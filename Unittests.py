@@ -6,29 +6,23 @@ from Converter import Converter
 
 class TestsKorrekteAusfuehrung(unittest.TestCase):
 
+    def setUp(self):
+        self.f1=Converter('csv.csv')
+        self.f2=Converter('csv2.csv')
+
     def test_korrekteAusfuehrungeinFile(self):
-        c = Converter('csv.csv')
+        pass;
 
     def test_MehrereFiles_gleicherDialekt(self):
-        c1 = Converter('csv.csv')
-        c2 = Converter('csv2.csv')
+        pass;
 
     def test_MehrereFiles_unterschiedlicherDialekt(self):
         pass;
-
-class Filenichtkorrekt(unittest.TestCase):
-    """
-    def test_something(self):
-        self.assertEqual(True, False)
-    """
 
     def test_Dateinichtvorhanden(self):
         pass;
 
     def test_UngueltigerDateiinhalt(self):
-        pass;
-
-    def test_KeinDateiinhalt(self):
         pass;
 
 
