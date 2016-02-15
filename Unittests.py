@@ -8,13 +8,16 @@ class Testsallgemein(unittest.TestCase):
 
     def setUp(self):
         self.f1=Converter('csv')
-        self.f2=Converter('csv2')
 
     def test_readfile(self):
         self.f1.lesen()
 
     def test_writefile(self):
-        self.f1.schreiben()
+        self.f1.createfile()
+
+    def test_twofiles(self):
+        self.f1.createfile()
+        self.f1.addfile('csv2')
 
     def test_wrongfilename(self):
         f3=Converter('notfoundfile')
