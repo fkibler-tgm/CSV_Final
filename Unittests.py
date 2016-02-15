@@ -7,8 +7,8 @@ from Converter import Converter
 class TestsKorrekteAusfuehrung(unittest.TestCase):
 
     def setUp(self):
-        self.f1=Converter('csv.csv')
-        self.f2=Converter('csv2.csv')
+        self.f1=Converter('csv')
+        self.f2=Converter('csv2')
 
     def test_korrekteAusfuehrungeinFile(self):
         pass;
