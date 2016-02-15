@@ -34,7 +34,7 @@ class Converter(object):
             return content
         except FileNotFoundError as er:
             print('Datei existiert nicht!')
-            return ' ';
+            return ' '
 
     def sniffer(self, filename):
         """
