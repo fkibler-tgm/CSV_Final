@@ -28,7 +28,7 @@ class Converter(object):
                 try:
                     for row in reader:
                         print(row)
-                        content.append(row)
+                        content.append(row)#der Liste wird ein element hinzugefuegt
                 except csv.Error as e:
                     sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
             return content
@@ -42,7 +42,7 @@ class Converter(object):
         :param: Name des CSV-Files
         :return: Dialektname
         """
-        pdialect = [',', ';', '\t', ' ', '|', ':']
+        pdialect = [',',  '|', ':', ';', ' ', '\t']
         try:
             dialect = csv.Sniffer().sniff(filename + '.csv', pdialect)
         except:
@@ -79,11 +79,4 @@ class Converter(object):
         output.close()
 
 
-"""
-if __name__ == '__main__':
-    test = Converter('csv.csv')
-    test.lesen()
-    test.createfile('newf')
-    test.addfile('csv2.csv','newf')
-"""
 
