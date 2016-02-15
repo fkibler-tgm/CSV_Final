@@ -91,48 +91,23 @@ class Converter(object):
             return 'Datei existiert nicht!'
 
 
-"""
-    Diese Methode ermittelt den Dialekt anhand der Trennzeichen und gibt diesen dann zurueck
-"""
+    """
+        Diese Methode ermittelt den Dialekt anhand der Trennzeichen und gibt diesen dann zurueck
+    """
 
 
-def sniffer(self, filename):
-    # Alle moeglichen Trennzeichen verpacke ich in eine Liste
-    moegliche_Trennzeichen = [',', ';', '\t', ' ', '|', ':']
-    try:
-        # Es wird ueberprueft ob eines der oben angefuehrten Trennzeichen vorhanden ist
-        dialect = csv.Sniffer().sniff(filename + '.csv', moegliche_Trennzeichen)
-    except:
-        # Wenn nicht gibt es keinen Dialekt
-        dialect = None
-    return dialect
+    def sniffer(self, filename):
+        # Alle moeglichen Trennzeichen verpacke ich in eine Liste
+        moegliche_Trennzeichen = [',', ';', '\t', ' ', '|', ':']
+        try:
+            # Es wird ueberprueft ob eines der oben angefuehrten Trennzeichen vorhanden ist
+            dialect = csv.Sniffer().sniff(filename + '.csv', moegliche_Trennzeichen)
+        except:
+            # Wenn nicht gibt es keinen Dialekt
+            dialect = None
+        return dialect
 
 
 if __name__ == '__main__':
     test = Converter("csv")
 
-"""
-import csv, codecs
-
-class Converter:
-    def __init__(self, filename):
-        self.inhalt=None
-        f = open(filename, 'r')
-        self.reader = csv.reader(f, dialect=csv.excel)
-
-    def opencsv(self):
-        self.inhalt = ''
-        for row in self.reader:
-            self.inhalt+=row
-
-    def recognize(self):
-        sn = csv.Sniffer()
-        s = sn.sniff(self.opencsv())
-        return s.delimiter
-
-
-
-c = Converter('csv.txt')
-c.opencsv()
-print(c.inhalt)
-"""
