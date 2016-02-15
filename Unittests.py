@@ -10,11 +10,17 @@ class Testsallgemein(unittest.TestCase):
         self.f1=Converter('csv')
         self.f2=Converter('csv2')
 
-    def test_readonefile(self):
-        self.f1.readCSV()
+    def test_readfile(self):
+        self.f1.lesen()
 
-    def test_writeonefile(self):
-        self.f1.writeinCSV()
+    def test_writefile(self):
+        self.f1.schreiben()
+
+    def test_wrongfilename(self):
+        f3=Converter('notfoundfile')
+
+    def test_emptyfile(self):
+        f3=Converter('emptyfile')
 
 
 

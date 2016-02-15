@@ -11,10 +11,10 @@ class Converter(object):
         dialekt = self.sniffer(self.pfad)
         print(dialekt)
         # Der Dialekt eines CSV-Files wird ueberprueft und das File wird in der Konsole ausgegeben
-        self.readCSV()
+        self.lesen()
         print("Speicherung in ein neues File " + pfad + "NEU.csv")
         # Ein neues CSV File mit validen Header wird erstellt
-        self.writeinCSV()
+        self.schreiben()
         # Ein Csv File wird kopiert und extra Content wird angehaengt
         self.newfile()
         print("Speicherung in ein neues File " + pfad + "NEW.csv")
@@ -25,7 +25,7 @@ class Converter(object):
             - Ein neues Csv File zu erstellen und in dieses etwas hinein zu speichern
     """
 
-    def writeinCSV(self):
+    def schreiben(self):
         # Das File wird geoeffnet
         with open(self.pfad + 'NEU.csv', 'w') as csvfile:
             fieldnames = ['T', 'WV', 'WK', 'BZ', 'SPR', 'WBER', 'ABG', 'UNG', 'SPOE',
@@ -67,7 +67,6 @@ class Converter(object):
         ifile.close()
         ofile.close()
 
-
     """
     Diese Methode ist dazu dar um ein CSV-File zu lesen und in der Konsole auszugeben
     Es ist wichtig, dass alle verschiedenen Dialekte ausgegeben werden koennen
@@ -75,41 +74,42 @@ class Converter(object):
     Ich habe die Methode mit allen  verschiedenen Dialekten getestet und alle konnten gleichermassen ausgelesen werden
     """
 
-
-    def readCSV(self):
+    def lesen(self):
         filename = self.pfad + '.csv'
         out = []
-        with open(filename, 'r') as f:
-            reader = csv.reader(f, self.sniffer(filename))
-            try:
-                for row in reader:
-                    print(row)
-                    out.append(row)
-            except csv.Error as e:
-                sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
-        return out
-
-
-    """
-        Diese Methode ermittelt den Dialekt anhand der Trennzeichen und gibt diesen dann zurueck
-    """
-
-
-    def sniffer(self, filename):
-        # Alle moeglichen Trennzeichen verpacke ich in eine Liste
-        moegliche_Trennzeichen = [',', ';', '\t', ' ', '|', ':']
         try:
-            # Es wird ueberprueft ob eines der oben angefuehrten Trennzeichen vorhanden ist
-            dialect = csv.Sniffer().sniff(filename + '.csv', moegliche_Trennzeichen)
-        except:
-            # Wenn nicht gibt es keinen Dialekt
-            dialect = None
-        return dialect
+            with open(filename, 'r') as f:
+                reader = csv.reader(f, self.sniffer(filename))
+                try:
+                    for row in reader:
+                        print(row)
+                        out.append(row)
+                except csv.Error as e:
+                    sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
+            return out
+        except FileNotFoundError as er:
+            return 'Datei existiert nicht!'
+
+
+"""
+    Diese Methode ermittelt den Dialekt anhand der Trennzeichen und gibt diesen dann zurueck
+"""
+
+
+def sniffer(self, filename):
+    # Alle moeglichen Trennzeichen verpacke ich in eine Liste
+    moegliche_Trennzeichen = [',', ';', '\t', ' ', '|', ':']
+    try:
+        # Es wird ueberprueft ob eines der oben angefuehrten Trennzeichen vorhanden ist
+        dialect = csv.Sniffer().sniff(filename + '.csv', moegliche_Trennzeichen)
+    except:
+        # Wenn nicht gibt es keinen Dialekt
+        dialect = None
+    return dialect
 
 
 if __name__ == '__main__':
     test = Converter("csv")
-
 
 """
 import csv, codecs
