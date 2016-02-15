@@ -16,6 +16,8 @@ class Testsallgemein(unittest.TestCase):
     def test_writeonefile(self):
         self.f1.writeinCSV()
 
+    def test_writetwofiles
+
 
 if __name__ == '__main__':
     unittest.main()
